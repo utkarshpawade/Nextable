@@ -1,0 +1,13 @@
+# This is a config for E2B sandbox template.
+
+
+# Python SDK
+# from e2b import Sandbox, AsyncSandbox
+
+# JS SDK
+# import { Sandbox } from 'e2b'
+
+team_id = "797c8008-928d-47de-8a9c-ef75ca88e588"
+start_cmd = "/compile_page.sh"
+dockerfile = "e2b.Dockerfile"
+template_id = "lwltsannu9hu8y6qaqv0"
