@@ -4,8 +4,6 @@
 
 **Prompt-to-Production. An AI-native builder that turns natural language into deployable Next.js apps.**
 
-![License](https://img.shields.io/badge/license-MIT-blue.svg)
-![CI](https://img.shields.io/badge/CI-passing-brightgreen.svg)
 ![Next.js](https://img.shields.io/badge/Next.js-15.4-black?logo=next.js)
 ![React](https://img.shields.io/badge/React-19-61DAFB?logo=react)
 ![Prisma](https://img.shields.io/badge/Prisma-6.12-2D3748?logo=prisma)
@@ -380,23 +378,6 @@ OPENAI_FREE2_MODEL="x-ai/grok-4-fast:free"
 - [ ] **Multi-agent specialization** — split `codeAgent` into planner / coder / reviewer roles inside the network.
 - [ ] **Model persistence on `Message`** — currently the chosen model is passed through the event but not stored on the `Message` row (see `TODO` in `messages.create`).
 - [ ] **Rate-limit UX** — surface remaining credits + reset window in the prompt form pre-submit instead of only on failure.
-
-## Contributing
-
-Contributions are welcome. The short version:
-
-1. Fork, branch from `main` (`git checkout -b feat/your-feature`).
-2. Run `npm run lint` and keep changes scoped — this repo uses strict TypeScript and ESLint 9.
-3. Never commit `.env*` files or Clerk/E2B secrets.
-4. Open a PR with a short description, reproduction steps for bugs, and screenshots for UI changes.
-
-For larger architectural shifts (schema migrations, new tRPC routers, new Inngest functions), open a discussion issue first so we can align on the blast radius.
-
-## License
-
-Released under the **MIT License**. See [`LICENSE`](./LICENSE) for the full text.
-
----
 
 <div align="center">
 
