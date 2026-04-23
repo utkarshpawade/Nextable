@@ -25,8 +25,6 @@
 - [Getting Started](#getting-started)
 - [Usage & Workflows](#usage--workflows)
 - [Future Roadmap](#future-roadmap)
-- [Contributing](#contributing)
-- [License](#license)
 
 ---
 
