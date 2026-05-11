@@ -41,7 +41,7 @@ export const codeAgentFunction = inngest.createFunction(
     // }
     
     const sandboxId = await step.run("get-sandbox-id", async () => {
-      const sandbox = await Sandbox.create("utkarsh-lovable-test-1");
+      const sandbox = await Sandbox.create("nextable-utkarsh-nextjs");
       await sandbox.setTimeout(SANDBOX_TIMEOUT);
       return sandbox.sandboxId;
     });

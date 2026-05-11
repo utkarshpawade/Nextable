@@ -1,13 +1,17 @@
 # This is a config for E2B sandbox template.
-
+# You can use template ID (mxi79qavkif2hb6kjlig) or template name (nextable-utkarsh-nextjs) to create a sandbox:
 
 # Python SDK
 # from e2b import Sandbox, AsyncSandbox
+# sandbox = Sandbox.create("nextable-utkarsh-nextjs") # Sync sandbox
+# sandbox = await AsyncSandbox.create("nextable-utkarsh-nextjs") # Async sandbox
 
 # JS SDK
 # import { Sandbox } from 'e2b'
+# const sandbox = await Sandbox.create('nextable-utkarsh-nextjs')
 
-team_id = "797c8008-928d-47de-8a9c-ef75ca88e588"
+team_id = "538d81da-a759-4f15-b534-07914d33d950"
 start_cmd = "/compile_page.sh"
 dockerfile = "e2b.Dockerfile"
-template_id = "lwltsannu9hu8y6qaqv0"
+template_name = "nextable-utkarsh-nextjs"
+template_id = "mxi79qavkif2hb6kjlig"
