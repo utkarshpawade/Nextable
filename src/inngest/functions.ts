@@ -27,9 +27,9 @@ export const codeAgentFunction = inngest.createFunction(
     // --- Safe type-safe model selection ---
     type ModelKey = "grok" | "codex" | "gemini";
     const modelMapping: Record<ModelKey, string | undefined> = {
-      "grok": "poolside/laguna-m.1:free",
+      "grok": "baidu/cobuddy:free",
       "codex": "baidu/cobuddy:free",
-      "gemini": "inclusionai/ring-2.6-1t:free",
+      "gemini": "baidu/cobuddy:free",
     };
     const selectedModel = (event.data.model as ModelKey); // use model not selectedModel
     const chosenModel = modelMapping[selectedModel];
@@ -82,44 +82,13 @@ export const codeAgentFunction = inngest.createFunction(
       description: "An expert coding angent",
       system: PROMPT,
       model: openai({
-        model: chosenModel ?? "poolside/laguna-m.1:free",
+        model: chosenModel ?? "baidu/cobuddy:free",
         apiKey: process.env.OPENAI_API_KEY,
         baseUrl: process.env.OPENAI_API_BASE,
-        defaultParameters: { temperature: 0.1 },
+        defaultParameters: { temperature: 0.1, max_tokens: 2048 },
       }),
 
       tools: [
-        createTool({
-          name: "terminal",
-          description: "Use the terminal to run commands",
-          parameters: z.object({
-            command: z.string(),
-          }),
-          handler: async ({ command }, { step }) => {
-            return await step?.run("terminal", async () => {
-              const buffers = { stdout: "", stderr: "" };
-              
-              try {
-                const sandbox = await getSandboxId(sandboxId);
-                const result = await sandbox.commands.run(command, {
-                  onStdout: (data: string) => {
-                    buffers.stdout += data;
-                  },
-                  onStderr: (data: string) => {
-                    buffers.stderr += data;
-                  }
-                });
-                return result.stdout
-              } catch (e) {
-                console.error(
-                  `Command failed: ${e} \nstddout: ${buffers.stdout}\nstderr: ${buffers.stderr}`,
-                );
-                return `Command failed: ${e} \nstddout: ${buffers.stdout}\nstderr: ${buffers.stderr}`;
-              }
-            });
-          },
-        }),
-
         createTool({
           name: "createOrUpdateFiles",
           description: "Create or update files in the sandbox",
@@ -194,7 +163,7 @@ export const codeAgentFunction = inngest.createFunction(
     const network = createNetwork<AgentState>({
       name: "coding-agent-network",
       agents: [codeAgent],
-      maxIter: 15,
+      maxIter: 5,
       defaultState: state,
       router: async ({ network }) => {
         const summary = network.state.data.summary;
@@ -213,10 +182,10 @@ export const codeAgentFunction = inngest.createFunction(
       description: "A fragment title generator",
       system: FRAGMENT_TITLE_PROMPT,
       model: openai({
-        model: process.env.OPENAI_FREE2_MODEL ?? "poolside/laguna-m.1:free",
+        model: process.env.OPENAI_FREE2_MODEL ?? "baidu/cobuddy:free",
         apiKey: process.env.OPENAI_API_KEY,
         baseUrl: process.env.OPENAI_API_BASE,
-        defaultParameters: { temperature: 0.1 },
+        defaultParameters: { temperature: 0.1, max_tokens: 256 },
       }),
     });
 
@@ -225,10 +194,10 @@ export const codeAgentFunction = inngest.createFunction(
       description: "A response generator",
       system: RESPONSE_PROMPT,
       model: openai({
-        model: process.env.OPENAI_FREE2_MODEL ?? "poolside/laguna-m.1:free",
+        model: process.env.OPENAI_FREE2_MODEL ?? "baidu/cobuddy:free",
         apiKey: process.env.OPENAI_API_KEY,
         baseUrl: process.env.OPENAI_API_BASE,
-        defaultParameters: { temperature: 0.1 },
+        defaultParameters: { temperature: 0.1, max_tokens: 256 },
       }),
     });
 
