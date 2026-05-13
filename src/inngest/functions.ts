@@ -85,7 +85,7 @@ export const codeAgentFunction = inngest.createFunction(
         model: chosenModel ?? "baidu/cobuddy:free",
         apiKey: process.env.OPENAI_API_KEY,
         baseUrl: process.env.OPENAI_API_BASE,
-        defaultParameters: { temperature: 0.1, max_tokens: 2048 },
+        defaultParameters: { temperature: 0.1, max_completion_tokens: 2048 },
       }),
 
       tools: [
@@ -185,7 +185,7 @@ export const codeAgentFunction = inngest.createFunction(
         model: process.env.OPENAI_FREE2_MODEL ?? "baidu/cobuddy:free",
         apiKey: process.env.OPENAI_API_KEY,
         baseUrl: process.env.OPENAI_API_BASE,
-        defaultParameters: { temperature: 0.1, max_tokens: 256 },
+        defaultParameters: { temperature: 0.1, max_completion_tokens: 256 },
       }),
     });
 
@@ -197,7 +197,7 @@ export const codeAgentFunction = inngest.createFunction(
         model: process.env.OPENAI_FREE2_MODEL ?? "baidu/cobuddy:free",
         apiKey: process.env.OPENAI_API_KEY,
         baseUrl: process.env.OPENAI_API_BASE,
-        defaultParameters: { temperature: 0.1, max_tokens: 256 },
+        defaultParameters: { temperature: 0.1, max_completion_tokens: 256 },
       }),
     });
 
