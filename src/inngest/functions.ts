@@ -27,9 +27,9 @@ export const codeAgentFunction = inngest.createFunction(
     // --- Safe type-safe model selection ---
     type ModelKey = "grok" | "codex" | "gemini";
     const modelMapping: Record<ModelKey, string | undefined> = {
-      "grok": "x-ai/grok-4-fast:free",
-      "codex": "openai/gpt-5-codex",
-      "gemini": "google/gemini-2.5-flash",
+      "grok": "poolside/laguna-m.1:free",
+      "codex": "baidu/cobuddy:free",
+      "gemini": "inclusionai/ring-2.6-1t:free",
     };
     const selectedModel = (event.data.model as ModelKey); // use model not selectedModel
     const chosenModel = modelMapping[selectedModel];
@@ -82,7 +82,7 @@ export const codeAgentFunction = inngest.createFunction(
       description: "An expert coding angent",
       system: PROMPT,
       model: openai({
-        model: chosenModel ?? "x-ai/grok-4-fast:free",
+        model: chosenModel ?? "poolside/laguna-m.1:free",
         apiKey: process.env.OPENAI_API_KEY,
         baseUrl: process.env.OPENAI_API_BASE,
         defaultParameters: { temperature: 0.1 },
@@ -213,7 +213,7 @@ export const codeAgentFunction = inngest.createFunction(
       description: "A fragment title generator",
       system: FRAGMENT_TITLE_PROMPT,
       model: openai({
-        model: process.env.OPENAI_FREE2_MODEL ?? "x-ai/grok-4-fast:free",
+        model: process.env.OPENAI_FREE2_MODEL ?? "poolside/laguna-m.1:free",
         apiKey: process.env.OPENAI_API_KEY,
         baseUrl: process.env.OPENAI_API_BASE,
         defaultParameters: { temperature: 0.1 },
@@ -225,7 +225,7 @@ export const codeAgentFunction = inngest.createFunction(
       description: "A response generator",
       system: RESPONSE_PROMPT,
       model: openai({
-        model: process.env.OPENAI_FREE2_MODEL ?? "x-ai/grok-4-fast:free",
+        model: process.env.OPENAI_FREE2_MODEL ?? "poolside/laguna-m.1:free",
         apiKey: process.env.OPENAI_API_KEY,
         baseUrl: process.env.OPENAI_API_BASE,
         defaultParameters: { temperature: 0.1 },
